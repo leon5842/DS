@@ -2,6 +2,7 @@
 #include <vector>
 using namespace std;
 
+/* add dummy */
 struct node 
 {
 	int data;
