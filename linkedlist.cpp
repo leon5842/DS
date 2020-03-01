@@ -153,10 +153,6 @@ int main()
 	list.display();
 	list.add_head(0);
 	list.display();
-	list.del_tail();
-	list.display();
-	list.del_tail();
-	list.display();
 	list.add_tail(3);
 	list.add_tail(5);
 	list.display();
