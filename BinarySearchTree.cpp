@@ -15,7 +15,7 @@ public:
 	~BST();
 	int insertNode(int data);
 	TreeNode* insertNode(TreeNode *node, int data);
-	int search(int key, TreeNode **ret);
+	int search(int key, TreeNode * &ret);
 	void inOrder(TreeNode* cur);
 	void inOrder();
 
@@ -34,7 +34,7 @@ BST::~BST()
 
 }
 
-int BST::search(int key, TreeNode **ret)
+int BST::search(int key, TreeNode * &ret)
 {
 	TreeNode *cur;
 
@@ -49,7 +49,7 @@ int BST::search(int key, TreeNode **ret)
 			break;
 	}
 
-	*ret = cur;
+	ret = cur;
 
 	if (cur)
 		return 0;
@@ -123,11 +123,11 @@ int main()
 	tree.insertNode(5);
 	tree.inOrder();
 
-	if (tree.search(3, &result) == 0)
+	if (tree.search(3, result) == 0)
 		cout << "found node -->" << result->val << endl;
 	else
 		cout << "key val not found" << endl;
-	if (tree.search(20, &result) == 0)
+	if (tree.search(20, result) == 0)
 		cout << "found node -->" << result->val << endl;
 	else
 		cout << "key val not found" << endl;
