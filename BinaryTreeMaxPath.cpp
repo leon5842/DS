@@ -1,6 +1,15 @@
 #include <iostream>
 using namespace std;
 
+/*
+ *   TreeNode structure
+ *
+ *   int val
+ *   struct TreeNode* left
+ *   struct TreeNode* right
+ *
+ */
+
 /* calculate max binary tree path */
 class solution {
 
