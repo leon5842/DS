@@ -15,6 +15,7 @@ public:
 	~BST();
 	int insertNode(int data);
 	TreeNode* insertNode(TreeNode *node, int data);
+	int insertNode_Iteration(int data);
 	int search(int key, TreeNode * &ret);
 	void inOrder(TreeNode* cur);
 	void inOrder();
@@ -77,6 +78,37 @@ TreeNode* BST::insertNode(TreeNode *node,int data)
 	return node;
 }
 
+int BST::insertNode_Iteration(int data)
+{
+	TreeNode *cur, *parent, *NewNode;
+
+	parent = NULL;
+	cur = root;
+
+	while (cur) {
+		if (cur->val < data) {
+			parent = cur;
+			cur = cur->right;
+		} else if (cur->val > data) {
+			parent = cur;
+			cur = cur->left;
+		}
+	}
+
+	NewNode = new TreeNode;
+	NewNode->val = data;
+	NewNode->left = NULL;
+	NewNode->right = NULL;
+
+	if (parent->val < data) {
+		parent->right = NewNode;
+	} else if (parent->val > data) {
+		parent->left = NewNode;
+	}
+
+	cout << "using iteration to inserted node " << data << endl;
+	return 0;
+}
 
 void BST::inOrder(TreeNode* cur)
 {
@@ -97,7 +129,8 @@ void BST::inOrder()
 int BST::insertNode(int data)
 {
 	if (root) {
-		insertNode(root, data);
+		//insertNode(root, data);
+		insertNode_Iteration(data);
 	} else {
 		cout << "allocate new mode " << data << endl; 
 		root = new TreeNode;
