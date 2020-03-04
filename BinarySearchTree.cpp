@@ -19,6 +19,7 @@ public:
 	int insertNode_Iteration(int data);
 	int search(int key, TreeNode* &parent, TreeNode * &ret);
 	int search(int key);
+	void delete_node_recursion(TreeNode* &go, int key);
 	void delete_node(TreeNode* &go, int key);
 	void delete_node(int key);
 	void inOrder(TreeNode* cur);
@@ -189,6 +190,48 @@ int BST::insertNode(int data)
 	return 0;
 }
 
+
+void BST::delete_node_recursion(TreeNode* &cur, int key)
+{
+	int ret = 0;
+
+	/* base case, key not found */
+	if (cur == NULL)
+		return;
+
+	if (cur->val < key)
+		delete_node_recursion(cur->right, key);
+	else if (cur->val > key)
+		delete_node_recursion(cur->left, key);
+	else {
+
+		if (cur->left == NULL && cur->right == NULL)
+		{
+			delete cur;
+
+			cur = NULL;
+
+		} else if (cur->left && cur->right) {
+
+			TreeNode *successor = leftMost(cur->right);
+
+			cur->val = successor->val;
+
+			delete_node_recursion(cur->right, successor->val);
+
+		} else {
+			/* check left or right */
+			TreeNode *child = cur->left ? cur->left:cur->right;
+			TreeNode *tmp = cur;
+
+			/* replace del_node with child */
+			cur = child;
+			/* delete del_node */
+			delete tmp;
+		}
+	}
+}
+
 void BST::delete_node(TreeNode* &go, int key)
 {
 	TreeNode *cur = NULL, *parent = NULL;
@@ -197,10 +240,8 @@ void BST::delete_node(TreeNode* &go, int key)
 	cur = go;
 
 	ret = search(key, parent, cur);
-	if (ret) {
-		cout << "??????\n";
+	if (ret)
 		return;
-	}
 
 	/* case 1, node was leaf node */
 	if (cur->left == NULL && cur->right == NULL)
@@ -246,14 +287,14 @@ void BST::delete_node(TreeNode* &go, int key)
 	}
 }
 
-
 void BST::delete_node(int key)
 {
 	TreeNode *tmp;
 
 	tmp = root;
 
-	delete_node(tmp, key);
+//delete_node(tmp, key);
+	delete_node_recursion(tmp, key);
 }
 
 int main()
