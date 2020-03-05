@@ -258,6 +258,7 @@ void BST::delete_node(TreeNode* &go, int key)
 			go = NULL;
 		}
 		delete cur;
+
 	/* case 2, has both child */
 	} else if (cur->left && cur->right) {
 
@@ -274,6 +275,7 @@ void BST::delete_node(TreeNode* &go, int key)
 	} else {
 			TreeNode *child = (cur->left) ? cur->left:cur->right;
 
+			/* if cur node not root, set cur child to its parent*/
 			if (cur != go)
 			{
 				if (cur == parent->left)
@@ -293,8 +295,8 @@ void BST::delete_node(int key)
 
 	tmp = root;
 
-//delete_node(tmp, key);
-	delete_node_recursion(tmp, key);
+delete_node(tmp, key);
+//	delete_node_recursion(tmp, key);
 }
 
 int main()
@@ -322,7 +324,7 @@ int main()
 	else
 		cout << "key val not found" << endl;
 
-	tree.delete_node(15);
+	tree.delete_node(9);
 	tree.levelOrder();
 	return 0;
 }

@@ -28,7 +28,6 @@ void Graph::addEdge(int src, int dest)
 
 void Graph::DFS(int vertex)
 {
-
 	visited[vertex] = true;
 	list<int> adjList = adjLists[vertex];
 
@@ -43,13 +42,13 @@ void Graph::DFS(int vertex)
 
 int main()
 {
-	Graph g(4);
-	g.addEdge(0, 1);
-	g.addEdge(0, 2);
-	g.addEdge(1, 2);
-	g.addEdge(2, 3);
+	Graph g(8);
+	g.addEdge(0, 4);
+	g.addEdge(0, 7);
+	g.addEdge(4, 6);
+	g.addEdge(7, 5);
 
-	g.DFS(1);
+	g.DFS(0);
 
 	return 0;
 }
