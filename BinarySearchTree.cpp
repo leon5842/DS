@@ -1,6 +1,11 @@
 #include <iostream>
 #include <queue>
+#include <vector>
+#include <list>
+
 using namespace std;
+
+list<int> g_list;
 
 struct TreeNode {
 	int val;
@@ -302,8 +307,6 @@ delete_node(tmp, key);
 int main()
 {
 	BST tree;
-	TreeNode *result = NULL;
-	TreeNode *parent = NULL;
 
 	tree.insertNode(10);
 	tree.insertNode(15);
