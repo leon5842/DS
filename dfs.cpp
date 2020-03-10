@@ -43,12 +43,28 @@ void Graph::DFS(int vertex)
 int main()
 {
 	Graph g(8);
+#if 0 
+	bool **visited;
+	
+	visited = new bool*[10];
+	
+	for (int i = 0; i < 10; i ++)
+		visited[i] = (bool*) new bool[10];
+
+		cout << "HHHHHHHHHHH";
+	for (int i = 0; i < 10; i++)
+		for (int j = 0; j < 10; j++) {
+			cout << " i = " << i << "j = "<<j;
+			visited[i][j] = false;
+		}
+#endif
+#if 1
 	g.addEdge(0, 4);
 	g.addEdge(0, 7);
 	g.addEdge(4, 6);
 	g.addEdge(7, 5);
 
 	g.DFS(0);
-
+#endif
 	return 0;
 }
