@@ -10,6 +10,7 @@ class solution {
 				res = max(res, i- left + 1);
 				m[s[i]] = i + 1;
 			}
+			// test
 			return res;
 	}
 };
