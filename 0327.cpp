@@ -15,6 +15,36 @@ class solution {
 	}
 };
 
+/*
+ * Given a string, find the length of the longest substring T that contains at most k distinct characters.
+ * Input: s = "eceba", k = 2
+ * Output: 3
+ * Explanation: T is "ece" which its length is 3.
+ *
+ */
+
+class solution {
+public:
+	int longestSubstringTinKDinstinct(string s, int k) {
+		int maxLen = 0;
+		unordered_map<char, int>> m;
+		int window_start = 0;
+
+		for (int window_end = 0; window_end < s.size(); window_end++) {
+			m[s[window_end]]++;
+
+			while (m.size() > k) {
+				if (--m[s[window_start]] == 0)
+					m.erase(s[window_start]);
+				window_start++;
+			}
+			maxLen = max(maxLen, window_end - widnow_start + 1);
+		}
+		return maxLen;
+	}
+};
+
+
 class solution {
 	int FindMaxArea(vector<int> &heights) {
 		int maxArea = 0;
