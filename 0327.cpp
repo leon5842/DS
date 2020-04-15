@@ -15,6 +15,49 @@ class solution {
 	}
 };
 
+int maxSubArrayLen(vector<int>& nums, int k) {
+	unordered_map<int,int> m;
+	int maxLen = INT_MIN;
+	int cur_sum = 0;
+	m[0] = -1;
+
+	for (int i = 0; i < nums.size(); i++) {
+		cur_sum += nums[i];
+
+		if (m.count(cur_sum - k)) {
+			maxLen = max(maxLen, i - m[cur_sum-k]);
+			cout << maxLen << endl;
+		}
+
+		if (!m.count(cur_sum))
+			m[cur_sum] = i;
+	}
+	return maxLen == INT_MIN  ? 0:maxLen;
+}
+
+/*
+ * Given an array of n positive integers and a positive integer s, find the minimal length of a contiguous subarray of which the sum ≥ s.
+ * If there isn't one, return 0 instead.
+ */
+
+int minSubArraySum(int s, vector<int> &nums)
+{
+	int w_e = 0, w_s = 0;
+	int minLen = INT_MAX;
+	int cur_sum = 0;
+
+
+	for (w_e; w_e < nums.size(); w_e++) {
+		cur_sum += nums[w_e];
+		while (cur_sum >= s) {
+			minLen = min(minLen, w_e - w_s + 1);
+			cur_sum -= nums[w_s];
+			w_s++;
+		}
+	}
+	return minLen == INT_MAX ? 0 : minLen;
+}
+
 /*
  * Given a string, find the length of the longest substring T that contains at most k distinct characters.
  * Input: s = "eceba", k = 2
