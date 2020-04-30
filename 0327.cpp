@@ -15,6 +15,21 @@ class solution {
 	}
 };
 
+/*
+ * Brain Kernighan algorithm
+ *
+ */
+
+unsigned int countSetBits(int n)
+{
+	unsigned int count = 0;
+	while (n) {
+		n &= (n - 1);
+		count++;
+	}
+	return count;
+}
+
 class Solution {
 	public:
 		bool isExpressive(string dst,string src) {
