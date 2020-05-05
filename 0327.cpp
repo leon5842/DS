@@ -15,6 +15,82 @@ class solution {
 	}
 };
 
+
+class Solution {
+	public:
+		int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+			int n = obstacleGrid.size();
+			int m = obstacleGrid[0].size();
+
+			vector<vector<long>> dp(n, vector<long>(m,0));
+			if (obstacleGrid[0][0])
+				return 0;
+			dp[0][0] = 1;
+
+			for (int col = 1; col < m; col++) {
+				if (obstacleGrid[0][col] != 1)
+					dp[0][col] = 1;
+				else
+					break;
+			}
+
+			for (int row = 1; row < n; row++) {
+				if (obstacleGrid[row][0] != 1)
+					dp[row][0] = 1;
+				else
+					break;
+			}
+
+			for (int i = 1; i < n; i++)
+				for (int j = 1; j < m; j++)
+					if (!obstacleGrid[i][j])
+						dp[i][j] = dp[i-1][j] + dp[i][j-1];
+			return dp[n-1][m-1];
+		}
+};
+
+
+
+class Solution {
+	public:
+		int uniquePaths(int m, int n) {
+			vector<vector<int>> cases(2, vector<int>(m, 1));
+
+			for (int i = 1; i < n; i++)
+				for (int j = 1; j < m; j++)
+					cases[i%2][j] = cases[(i-1)%2][j] + cases[i%2][j-1];
+
+			return cases[(n-1)%2][m-1];
+		}
+};
+
+class Solution {
+	public:
+		int minFallingPathSum(vector<vector<int>>& A) {
+			int n = A.size();
+			int res = INT_MAX;
+
+			if (A.size() == 1) 
+				return A[0][0];
+
+			for (int i = 1; i < n; i++) {
+				for (int j = 0; j < n; j++) {
+					int pre = A[i-1][j];
+					if (j > 0)
+						pre = min(pre, A[i-1][j-1]);
+					if (j < n - 1)
+						pre = min(pre, A[i-1][j+1]);
+					A[i][j] += pre;
+					if (i == n - 1)
+						res = min(res, A[i][j]);
+				}
+			}
+			return res;
+		}
+};
+
+
+
 /*
  * Brain Kernighan algorithm
  *

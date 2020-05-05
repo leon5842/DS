@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Graph
@@ -43,6 +44,9 @@ void Graph::DFS(int vertex)
 int main()
 {
 	Graph g(8);
+	string s = "fsdfsadfasdf";
+	int n = s.size();
+	int dp[n][n] = {0};
 #if 0 
 	bool **visited;
 	

@@ -67,6 +67,9 @@ void display()
 
 int main()
 {
+	string s = "cdadfasDF";
+	int n = s.size();
+	int dp[n][n];
 	// Fails because front = -1
 	deQueue();
 	enQueue(1);
