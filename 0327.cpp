@@ -49,6 +49,23 @@ class Solution {
 		}
 };
 
+// enumreate all posiible permutations for int n;
+int backtrack(int n) {
+	if (n == 5) {
+		cout << "solution"  << endl;
+		return;
+	}
+
+	for (i = 0; i < 5; i++ ) {
+		if (!visited[i]) {
+			visited[i] = true;
+			soltion[i] = n;
+			bactrack(n+1);
+			visited[i] = false'
+		}
+	}
+}
+
 
 
 class Solution {
