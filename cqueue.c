@@ -64,6 +64,10 @@ void display()
 		printf("\n Rear -> %d \n",rear);
 	}
 }
+/*
+ * we are going to delete each node here 
+ *
+ */
 
 int main()
 {
