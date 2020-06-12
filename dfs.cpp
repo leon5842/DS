@@ -1,6 +1,6 @@
 #include <iostream>
 #include <list>
-#include <bits/stdc++.h>
+#include <string>
 using namespace std;
 
 class Graph
@@ -46,7 +46,6 @@ int main()
 	Graph g(8);
 	string s = "fsdfsadfasdf";
 	int n = s.size();
-	int dp[n][n] = {0};
 #if 0 
 	bool **visited;
 	
@@ -62,6 +61,13 @@ int main()
 			visited[i][j] = false;
 		}
 #endif
+	string a = "930";
+	string b = "390";
+
+	if (a > b)
+		printf(" ???\n");
+	else
+		printf("!!!\n");
 #if 1
 	g.addEdge(0, 4);
 	g.addEdge(0, 7);
