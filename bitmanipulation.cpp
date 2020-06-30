@@ -115,6 +115,19 @@ int getSum(int a, int b) {
 }
 
 
+/*
+ * bit swap, calculate how many bits need to be swapped
+ * from a to b  (3 to 2, need 1 bit for example);
+ */
+
+int swappedRequired(int a, int b)
+{
+	int cnt = 0;
+	for (int c = a ^ b; c != 0; c = c & (c - 1))
+		cnt++;
+	retur cnt;
+}
+
 int main()
 {
 	return 0;
