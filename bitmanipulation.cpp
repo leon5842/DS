@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 /*
@@ -73,7 +74,7 @@ int minFlips(int a, int b, int c)
 	int flips = 0;
 
 	for (int i = 0; i < 32; i++) {
-		if (get_bit(c, i ) == 1) {
+		if (get_bits(c, i ) == 1) {
 			flips += (get_bits(a, i) | get_bits(b, i)) == 0;
 		}  else {
 			flips += (get_bits(a, i) != 0) + (get_bits(b, i) != 0);
@@ -125,10 +126,34 @@ int swappedRequired(int a, int b)
 	int cnt = 0;
 	for (int c = a ^ b; c != 0; c = c & (c - 1))
 		cnt++;
-	retur cnt;
+	return cnt;
 }
+
+
+void test(vector<vector<int>> &arr)
+{
+	int n = arr.size(), m = arr[0].size();
+
+	memset(&arr + ((sizeof(int)*m) * 1), 0, sizeof(int) * m);
+}
+
 
 int main()
 {
+	vector<vector<int>> cc = { { 3, 10 ,9} , { 3, 0, 8000000}, { 1,600,100000}};
+	vector<vector<int>> dd = { {1,2,3}, {4,5,6}, {7, 8, 9}};
+
+	test(dd);
+	
+	sort(cc.begin(), cc.end());
+
+	for (int i = 0; i < dd.size(); i++) {
+		for (int j = 0; j < dd[0].size(); j++)
+			printf("%d ", dd[i][j]);
+		printf("\n");
+	}
+
+	auto it = dd.begin()->begin();
+	printf("test %d\n", *it);
 	return 0;
 }
