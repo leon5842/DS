@@ -208,6 +208,32 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 	return res;
 }
 
+
+/*
+ * reverse words in a sentence
+ * Input: "  hello world!  "
+ * Output: "world! hello"
+ * Explanation: Your reversed string should not contain leading or trailing spaces.
+ */
+
+string reverseWords(string s) {
+	int storeIdx = 0, n = s.size();
+	reverse(s.begin(), s.end());
+
+	for (int i = 0; i < n; i++) {
+		if (s[i] != ' ') {
+			if (storeIdx)
+				s[storeIdx++] = ' ';
+			int j = i;
+			while (j < n && s[j] != ' ')
+				s[storeIdx++] = s[j++];
+			reverse(s.begin() + storeIdx - (j - i), s.begin() + storeIdx);
+			i = j;
+		}
+	}
+	s.resize(storeIdx);
+	return s;
+}
 int main() {
 	return 0;
 }
