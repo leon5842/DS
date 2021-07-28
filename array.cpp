@@ -208,14 +208,12 @@ vector<vector<int>> threeSum(vector<int>& nums) {
 	return res;
 }
 
-
 /*
  * reverse words in a sentence
  * Input: "  hello world!  "
  * Output: "world! hello"
  * Explanation: Your reversed string should not contain leading or trailing spaces.
  */
-
 string reverseWords(string s) {
 	int storeIdx = 0, n = s.size();
 	reverse(s.begin(), s.end());
@@ -234,6 +232,45 @@ string reverseWords(string s) {
 	s.resize(storeIdx);
 	return s;
 }
+
+/*
+ *  longest increasing sequences,
+ *
+ *  Inspired by http://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/
+ *  Given an unsorted array of integers, find the length of longest increasing subsequence.
+ *  Example:
+ *  Input: [10,9,2,5,3,7,101,18]
+ *  Output: 4
+ *  Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+ */
+
+int lengthOfLIS(vector<int>& nums) {
+    vector<int> res;
+    for(int i=0; i<nums.size(); i++) {
+        auto it = std::lower_bound(res.begin(), res.end(), nums[i]);
+        if(it==res.end()) res.push_back(nums[i]);
+        else *it = nums[i];
+    }
+    return res.size();
+}
+
+/* dp solution */
+int lengthOfLIS(vector<int>& nums) {
+	int size = nums.size();
+	if (size == 0)
+		return 0;
+	vector<int> dp(size, 1);
+
+	for (int i = 1; i < size; i++) {
+		for (int j = 0; j < i; j++) {
+			if (nums[i] > nums[j]) 
+				dp[i] = max(dp[i], dp[j] + 1);
+		}
+	}
+
+	return *max_element(dp.begin(), dp.end());
+}
+
 int main() {
 	return 0;
 }

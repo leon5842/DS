@@ -13,7 +13,7 @@ public:
         vector<vector<int>> res;
         
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+            For (int j = 0; j < m; j++) {
                 if (pq.size() < k)
                     pq.push({nums1[i], nums2[j]});
                 else if (pq.top().first + pq.top().second > nums1[i] + nums2[j]) {
@@ -101,3 +101,22 @@ public:
         return merged;
     }
 };
+
+
+
+const arr = [
+	one
+	two
+	three
+	one
+	one
+	one
+	one
+	three
+	two
+	three
+	two
+	three
+	two
+	three
+]

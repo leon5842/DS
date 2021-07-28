@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdint.h>
 #include <vector>
 using namespace std;
 
@@ -69,6 +70,11 @@ int binarySearch(vector<int> &nums, int target)
 #endif
 }
 
+int32_t float_to_fixed(float x)
+{
+    return (int32_t)(x * 65536.0f / 16.0f);
+}
+
 int main()
 {
 #if 0
@@ -90,4 +96,7 @@ int main()
 	printf("begin = %d, begin + 1 = %d\n", *f, *s);
 	
 	printf("bs search ret = %d\n", binarySearch(data, 1));
+
+	printf("fixed %8x\n", float_to_fixed(0.000156575398));
+
 }

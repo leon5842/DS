@@ -1,6 +1,4 @@
 
-
-
 void Graph:BFS(int vertex)
 {
 	queue<int> q;
