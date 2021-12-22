@@ -141,6 +141,110 @@ void linked_list::display()
 	cout << "\n";
 }
 
+/*
+ * reverse linkedlist
+ */
+
+ListNode* reverseList(ListNode* head) {
+	if (!head || !head->next)
+		return head;
+	ListNode *root = reverseList(head->next);
+	head->next->next = head;
+	head->next = nullptr;
+	return root;
+}
+
+ListNode* reverseList(ListNode* head) {
+	if (!head)
+		return head;
+
+	ListNode *cur = head;
+	ListNode *prev = nullptr;
+
+	while (cur) {
+		ListNode *tmp = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = tmp;
+	}
+
+	return prev;
+}
+
+
+class MyLinkedList {
+public:
+	MyLinkedList() {
+		total_nodes = 0;
+		head = new ListNode(0);
+		head->next = nullptr;
+	}
+
+	int get(int index) {
+		if (index >= total_nodes)
+			return -1;
+
+		ListNode *cur = head;
+		for (int i = 0; i < index; i++)
+			cur = cur->next;
+		return cur->val;
+	}
+
+	void addAtHead(int val) {
+		ListNode *cur = head->next;
+		head->next = new ListNode(val);
+		head->next->next = cur;
+		total_nodes++;
+	}
+	void addAtTail(int val) {
+		ListNode *cur = head;
+		while (cur->next)
+			cur = cur->next;
+		cur->next = new ListNode(val);
+		cur->next->next = nullptr;
+		total_nodes++;
+	}
+	void addAtIndex(int index, int val) {
+		if (index > total_nodes)
+			return;
+		ListNode *cur = head;
+		for (int i = 0; i < index; i++)
+			cur = cur->next;
+		ListNode *tmp = cur->next;
+		cur->next = new ListNode(val);
+		cur->next->next = tmp;
+		total_nodes++;
+		return;
+	}
+	void deleteAtIndex(int index, int val) {
+		if (index >= total_nodes)
+			return;
+		ListNode *cur = head;
+		for (int i = 0; i < index; i++)
+			cur = cur->next;
+		ListNode *tmp = cur->next;
+		cur->next = tmp->next;
+		delete tmp;
+		total_nodes--;
+	}
+private:
+	int total_nodes;
+	ListNode *head;
+};
+
+
+ListNode* getMiddleofList(ListNode *head) {
+	ListNode *fast = head;
+	ListNode *slow = head;
+
+	while (!fast && !fast->next) {
+		fast = fast->next->next;
+		slow = slow->next;
+	}
+	return slow;
+}
+
+
 int main()
 {
 	linked_list list;
