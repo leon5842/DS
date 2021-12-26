@@ -129,3 +129,28 @@ vector<int> nextGreaterElement(vector<int> &nums) {
 	return res;
 }
 
+/*
+ * valid parenthesis, return true if the valid thesis () {} (({})) etc.
+ */
+
+bool validParenthesis(string s) {
+	stack<char> stk;
+
+	for (auto c:s) {
+		if (c == '(' || c == '{' || c == '[') {
+			stk.push(c);
+		} else {
+			if (stk.empty())
+				return false;
+			if (stk.top == '(' && c != ')')
+				return false;
+			if (stk.top == '[' && c != ']')
+				return false;
+			if (stk.top == '{' && c != '}')
+				return false;
+			stk.pp();
+		}
+	}
+
+	return stk.empty() ? true : false;
+}
