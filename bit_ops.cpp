@@ -72,3 +72,25 @@ vector<int> countSetBits(int n) {
 		res[i] = res[i & (i-1)] + 1; // clear one right most bits and then add back one
 	return res;
 }
+
+
+/*
+ * 461. calculate the hamming distance
+ * check how many bit you need to flip to turn one interger to another
+ * hamming distance is the bits diff between a (1000) and b (1011) distance = 2
+ * we have 2 bits in different (bit 0 and bit 1)
+ */
+
+int hamming_distance(int x, int y) {
+	int res = 0;
+	// get different bits
+	int target = x ^ y;
+
+	while (target) {
+		// turn off the rightmost bits
+		target = target & (target - 1);
+		// calculate bits in differents
+		res+;
+	}
+	return res;
+}
