@@ -1,5 +1,7 @@
 #include <iostream>
-#include <map>
+#include <vector>
+#include <algorithm>
+#include <unordered_map>
 using namespace std;
 
 /*
@@ -15,7 +17,7 @@ int subarrySum(int k, vector<int> &nums)
 {
 	int res = 0;
 	int sum = 0;
-	unordered_map<int, int>> m;
+	unordered_map<int, int> m;
 
 	m[0] = 1;
 
@@ -144,22 +146,19 @@ public:
 * Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
 * It does not matter what you leave beyond the returned k (hence they are underscores).
 */
-class Solution {
-public:
-    int removeDuplicates(vector<int>& nums) {
-        int i = 1;
-        int j = 0;
-        
-        while (i < nums.size()) {
-            if (nums[i] == nums[j])
-                i++;
-            else
-                swap(nums[i++], nums[++j]);
-                
-        }
-        return nums.empty() ? 0 : j + 1;
-    }
-};
+int removeDuplicates(vector<int>& nums) {
+	int i = 1;
+	int j = 0;
+
+	while (i < nums.size()) {
+		if (nums[i] == nums[j])
+			i++;
+		else
+			swap(nums[i++], nums[++j]);
+
+	}
+	return nums.empty() ? 0 : j + 1;
+}
 
 /*
  * two sum  (array was sorted)
@@ -277,6 +276,63 @@ string reverseWords(string s) {
 	s.resize(storeIdx);
 	return s;
 }
+
+/*
+ * counting consecutive binary string
+ */
+
+int countBinaryString(string s) {
+	int res = 0;
+	int cur_len = 1;
+	int prev_len = 0;
+	
+	for (int i = 1; i < s.size(); i++) {
+		if (s[i-1] == s[i]) {
+			cur_len++;
+		} else {
+			prev_len = cur_len;
+			cur_len = 1;
+		}
+		if (prev_len >= cur_len)
+			res++;
+	}
+	return res;
+}	
+
+bool isUniqueChars(string s)
+{
+	int checker = 0;
+	for (int i = 0; i < s.size(); i++) {
+		int pos = s[i] - 'a';
+		if ((checker & (1 << pos)) > 0)
+			return false;
+		checker |= (1 << pos);
+	}
+	return true;
+}
+
+
 int main() {
+
+	string ss = "abcdefgg";
+	bool unique = false;
+	unique = isUniqueChars(ss);
+
+	cout << "testing string = " << ss << endl;
+
+	if (unique)
+		cout << "all unique character!!" << endl;
+	else
+		cout << "there is some repeat characters!!" << endl;
+
+	int n = 2;
+	while (--n)
+		cout << "hahaha" << endl;
+	n = 2;
+
+	printf("ccccc\n");
+	while (n--)
+		cout << "hahaha" << endl;
+
 	return 0;
 }

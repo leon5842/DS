@@ -87,8 +87,6 @@ int kthSmallest(vector<vector<int>> &matrix, int k) {
 	return left;
 }
 
-
-
 /*
  *
  * find peak element
@@ -117,3 +115,83 @@ int find PeakElement(vector<int> &nums) {
 	}
 	return l;
 }
+
+
+
+/*
+ *
+ * return weights capacity
+ */
+
+int find_days(vector<int> &w, int capacity) {
+	int res = 0;
+	int sum = 0;
+	for (int i = 0; i < w.size(); i++) {
+		if (w[i] + sum > capacity) {
+			sun = 0;
+			res++;
+		}
+		sum += w[i];
+	}
+	return res;
+}
+
+int shipWithDays(vector<int> &weights, int days) {
+	int left = INT_MAX;
+	int right =  = 0;
+
+	for (auto w:weights) {
+		left = max(left, w);
+		right += weights[i];
+	}
+
+	while (left < right) {
+		int capacity = left + (right - left ) / 2;
+
+		if (find_days(weights, capacity) > days)
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	return left;
+}
+
+
+/*
+ *
+ *
+ *
+ */
+
+int find_days(vector<int> &day, int k, int days) {
+	int res = 0;
+
+	for (int i = 0, j = -1; j < day.size(); i++) {
+		if (day[i] <= days) {
+			if (i - j >= k) {
+				j = i;
+				res++;
+			}
+		} else {
+			j = i;
+		}
+	}
+	return res;
+}
+
+int minDays(vector<int> &bloomDay, int m, int k) {
+	int left = *min_element(bloomDay.begin(), bloomDay.end());
+	int right = *max_element(bloomDay.begin(), bloomDay.end()) + 1;
+	int max_val = right;
+
+	while (left < right) {
+		int mid = left + (right - left) / 2;
+		if (find_days(bloomDay, k, mid) < m)
+			left = mid + 1;
+		else
+			right = mid;
+	}
+	return left == max_val ? -1:left;
+}
+
+
