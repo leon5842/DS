@@ -356,6 +356,34 @@ int characterReplacement(string s, int k) {
 	}
 	return n - i;
 }
+/*
+ *
+ * For people who can't understand res+=i
+   res += i
+   This is the best line ever
+
+    a a a b b c c a b c
+    when all a, b, c > 0 for first time at j = 5 the n after while loop i will be at i = 3, we will add 3 to result because there would be three substrings from three a's.
+
+  Then a,b,c > 0 at j = 7 ,then we will move i until i = 5 then we will add 5 to result because there could be 5 substrings starting from 0 to second b.
+
+   And similarly we proceed....
+ *
+ *
+ */
+int numOfSubstring(string s)
+{
+	int count[3] = {0};
+	int res = 0, j = 0, n = s.length();
+
+	for (int i = 0; i < n; i++) {
+		count[s[i]-'a']++;
+		while (count[0] && count[1] && count[2])
+			count[s[j++]-'a']--;
+		res += j;
+	}
+	return res;
+}
 
 
 int main() {
