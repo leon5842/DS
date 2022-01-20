@@ -399,6 +399,20 @@ int subarraysDivByK(vector<int>& A, int K) {
 }
 
 
+int subarraysDivByK(vector<int>& A, int K) {
+	unordered_map<int, int> count;
+	count[0] = 1;
+	int prefix = 0, res = 0;
+	for (int i = 0; i < A.size(); i++) {
+		prefix = (prefix + A[i])  % K;
+		if (prefix < 0)
+			prefix += K;
+		res += count[prefix]++;
+	}
+	return res;
+}
+
+
 int main() {
 
 	string ss = "abcdefgg";
